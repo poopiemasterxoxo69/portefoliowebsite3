@@ -1,0 +1,1029 @@
+<html lang="en">
+<head>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+  <meta charset="UTF-8">
+  <title>Mole Grid</title>
+  <style>
+       body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-image: url('img/backgroundgame.jpg');
+      background-size: 100% 100%; 
+      background-repeat: no-repeat;
+      height: 100vh;
+      margin: 0;
+      position: relative;
+
+    }
+
+    .container {
+      display: grid;
+      margin-top: 20px;
+      position: relative;
+
+    }
+
+    .circle {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background-color: black;
+      background-size: cover;
+      margin: 5px;
+      cursor: pointer;
+    }
+
+    button {
+      margin-bottom: 10px;
+    }
+
+    #coinwallet-text {
+      position: absolute;
+      top: 20px; 
+      left: 20px;
+      font-weight: bold;
+      font-size: 24px;
+      color: white;
+      -webkit-text-stroke: 0.2px black;
+    }
+
+    #coinwallet-container {
+      position: absolute;
+      top: 140px;
+      left: 323px; 
+      font-weight: bold;
+      font-size: 30px;
+
+      color: white;
+      -webkit-text-stroke: 0.2px black;
+    }
+
+    #waifu-coins-text, #coinwallet {
+      font-weight: bold;
+
+    }
+
+    #waifu-wallet-foto {
+      position: absolute;
+      top: -65px;
+      left: 44px;
+    }
+
+    #walletlatenzienknop {
+      background-color: aqua;
+      display: none; 
+    }
+
+    #highscorelatenzienknop {
+      background-color: red;
+      display: none;
+    }
+
+    #score-container {
+      position: absolute;
+      top: 70px;
+      right: 160px;
+      font-weight: bold;
+      font-size: 24px;
+      display: none; 
+
+      color: white;
+      -webkit-text-stroke: 0.2px black;
+    }
+
+    #scoretekst {
+      position: absolute;
+      top: 50px;
+      right: 160px;
+      font-weight: bold;
+      font-size: 24px;
+      font-size: 24px;
+      color: white;
+      -webkit-text-stroke: 0.2px black;
+    }
+
+    .waifu-coin-container {
+      position: absolute;
+      top: -20px; 
+      left: 2883px; 
+    }
+
+    .waifu-coin-container-2 {
+      position: absolute;
+      top: 90px; 
+      left: 1433.86px; 
+    }
+
+    #score {
+
+      position: absolute; 
+      bottom: -90px; 
+      right: -65px; 
+      font-size: 30px;
+      color: white;
+      -webkit-text-stroke: 0.2px black;
+      font-weight: bold; 
+    }
+
+    #waifu-coin-1 {
+      position: absolute;
+      top: -20px;
+      left: 2880px;
+    }
+
+    #waifu-coin-2 {
+      position: absolute;
+      top: 175px; 
+      left: 2867px; 
+    }
+
+    #waifu-coin-2-beginpagina {
+      position: absolute;
+      top: -10px;
+      left: 2860px; 
+    }
+
+    #highscore {
+
+      position: absolute;
+      top: 342px;
+      right: 45px;
+      font-weight: bold;
+      font-size: 30px;
+      color: white;
+      -webkit-text-stroke: 0.2px black;
+    }
+
+    #highscore-coins-text {
+      position: absolute;
+      top: 250px;
+      right: 160px;
+      font-weight: bold;
+      font-size: 24px;
+      color: white;
+      -webkit-text-stroke: 0.2px black;
+    }
+
+   #highscore-coins-text-beginpagina {
+    position: absolute;
+      top: 50px;
+      right: 160px;
+      font-weight: bold;
+      font-size: 24px;
+      font-size: 24px;
+      color: white;
+      -webkit-text-stroke: 0.2px black;
+   } 
+
+    #highscore-coin {
+      width: 120px; 
+      height: auto; 
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    #highscorebeginpagina {
+      position: absolute;
+      top: 150px;
+      right: 65px;
+      font-weight: bold;
+      font-size: 35px;
+      color: white;
+      -webkit-text-stroke: 0.2px black;
+    }
+
+    #winkelBtn {
+      position: absolute;
+      top: 400px;
+      left: 150px;
+      font-weight: bold;
+      height: 50px;
+      width: 200px;
+      font-size: 20px;
+    }
+
+    #Spelstartenknop {
+      position: absolute;
+      display: hidden;
+      background-color: #ffff00;
+      height: 200px;
+      font-weight: bold;
+      width: 360px;
+      font-size: 50px;
+      left: 1360px;
+      top: 330px;
+
+    }
+
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      font-weight: bold;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5); 
+      justify-content: center;
+      align-items: center;
+    }
+
+    .popup {
+      background-color: white;
+      padding: 20px;
+      border-radius: 5px;
+      text-align: center;
+      display: flex; 
+      flex-wrap: wrap; 
+      justify-content: center; 
+    }
+
+    .close-button {
+      margin-top: 10px;
+      padding: 5px 10px;
+      background-color: #ccc;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .koopbutton {
+  position: absolute;
+  bottom: 350px; 
+  right: 1003px; 
+  background-color: lightgreen;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  width: 350px;
+  height: 50px;
+  font-weight: bold;
+}
+
+    .product {
+      margin: 10px; 
+    }
+
+    .product img {
+      max-width: 200px;
+      max-height: 200px;
+    }
+
+    .geldteken img {
+      width: 3px;
+      height: 3px;
+    }
+
+    .product .price {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    #scoregeluidencheckboxsouund {
+      position: absolute;
+      font-size: 24px;
+      color: white;
+      -webkit-text-stroke: 0.2px black;
+      top: 470px;
+      font-weight: bold;
+      left: 2302px
+    }
+
+    #backgroundmuziekcheckbox {
+      position: absolute;
+      font-size: 24px;
+      color: white;
+      -webkit-text-stroke: 0.2px black;
+      top: 420px;
+      font-weight: bold;
+      left: 2240px
+    }
+
+    #stopSoundCheckbox {
+      position: absolute;
+      top: 500px;
+      left: 2730px
+    }
+
+    #muziekCheckbox {
+      position: absolute;
+      top: 450px;
+      left: 2730px
+    }
+
+.makkelijk,
+.normaal,
+.moeilijk,
+.winkel {
+  background-color: grey;
+  font-weight: bold;
+}
+
+.makkelijk.started {
+  background-color: lime;
+}
+
+.normaal.started {
+  background-color: orange;
+}
+
+.moeilijk.started {
+  background-color: red;
+}
+
+.winkel.started {
+  background-color:  RGB(135, 206, 250);
+  left: 20px;
+}
+
+.makkelijk,
+.normaal,
+.moeilijk,
+.makkelijk.started,
+.moeilijk.started,
+.normaal.started {
+  height: 200px;
+  width: 400px;
+  font-size: 70px;
+  font-weight: bold;
+  margin-right: 50px; 
+}
+
+#timer {
+  font-size: 30px;
+      color: white;
+      font-weight: bold;
+      -webkit-text-stroke: 0.2px black;
+}
+canvas {
+      position: absolute;
+
+      top: 670px;
+      left: 350px;
+      background-color: rgba(0, 0, 0, 0); 
+    }
+
+  </style>
+
+</head>
+<body>
+
+  <button id="Spelstartenknop" onclick="showalles()">Klik hier om de game te starten</button>
+
+  <div id="difficulty-buttons">
+    <button id="makkelijkBtn" class="makkelijk" onclick="chooseDifficulty(6)">Makkelijk</button>
+    <button id="normaalBtn" class="normaal" onclick="chooseDifficulty(8)">Normaal</button>
+    <button id="moeilijkBtn" class="moeilijk" onclick="chooseDifficulty(10)">Moeilijk</button>  
+      <span id="scoretekst">Meest behaalde waifu-coins in een game: &nbsp; &nbsp;&nbsp;&nbsp;</span>
+      <img src="img/waifu-coin-2.png" alt="waifu-coin-2" id="waifu-coin-2-beginpagina" ></img>
+      <span id="highscorebeginpagina" class="">0</span>
+    </div>
+
+    <span>
+      <span id="coinwallet-text">Uw waifu-coins:</span>
+    </span>
+    <img src="img/waifu-wallet.png" alt="waifu-wallet" id="waifu-wallet-foto"></img>
+    <span id="coinwallet-container">
+      <span id="coinwallet">0</span>
+    </span>
+    <br>
+    <span id="score-container">
+      <span id="score">0</span>
+    </span>
+    <div id="waifu-coins-container"></div> 
+
+    <div id="game-container" style="display: none;">
+      <span id="scoretekst">Aantal behaalde  waifu-coins:&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+      <img src="img/waifu-coin-1.png" alt="waifu-coin-1" id="waifu-coin-1" ></img>
+      <span id="score-container">
+
+        <span id="score"></span>
+      </span>
+      <span id="highscore-container">
+        <span id="highscore-coins-text">Meest behaalde waifu-coins in een game: &nbsp; &nbsp;&nbsp;&nbsp; </span><br>
+        <span id="highscore">0</span>
+        <img src="img/waifu-coin-2.png" alt="waifu-coin-2" id="waifu-coin-2">
+      </span>
+      <button id="start-game-btn" onclick="startGame()">Start Game</button>
+      <span id="timer"></span>
+      <div id="container" class="container"></div>
+      <div id="waifu-coin-container" class="waifu-coin-container"></div>
+      <div id="waifu-coin-container-2" class="waifu-coin-container-2"></div>
+      <button id="back-btn" style="display: none;" onclick="backToMenu()">Terug naar beginscherm</button>
+    </div>
+
+    <button id="walletlatenzienknop"  onclick="laatwalletzien()">Laat uw hoeveeldheid waifu-coins zien</button>
+    <button id="highscorelatenzienknop" onclick="laathighscorezien()">Laat uw highscore zien</button>
+
+    <button id="winkelBtn" class="winkel" onclick="openPopup()">winkel</button>
+
+    <div class="overlay" id="overlay">
+
+      <div class="popup">
+
+        <button class="close-button" onclick="closePopup()">Sluiten</button>
+        <button class="koopbutton" onclick="waifukoopen()">Koop hier je Waifu</button>
+        <div class="product">
+          <div class="description">Yuki-chan</div>
+          <img src="img/mol11.png" alt="Product 2">
+          <div class="price">
+            20
+            <p>waifu-coins</p>
+          </div> 
+        </div>
+
+        <div class="product">
+          <div class="description">Hana-chan</div>
+          <img src="img/mol12.png" alt="Product 2">
+          <div class="price">
+            40
+            <p>waifu-coins</p>
+          </div>
+        </div>
+
+        <div class="product">
+          <div class="description">Sakura-chan</div>
+          <img src="img/mol13.png" alt="Product 2">
+          <div class="price">
+            60
+            <p>waifu-coins</p>
+          </div>
+        </div>
+
+        <div class="product">
+          <div class="description">Emo-chan</div>
+          <img src="img/mol14.png" alt="Product 2">
+          <div class="price">
+            80
+            <p>waifu-coins</p>
+          </div>
+        </div>
+
+        <div class="product">
+          <div class="description">henk-kun</div>
+          <img src="img/mol15.png" alt="Product 2">
+          <div class="price">
+            200
+            <p>waifu-coins</p>
+          </div> 
+        </div>
+      </div>
+    </div>
+
+    <audio id="scoreSound" src=""></audio>
+    <audio id="myAudio" src="geluiden/backgroundmuziekgame.mp3" volume = 0.1 ></audio>
+     <audio id="scoreSound" src="geluid.wav.mp3"></audio>
+     <audio id="scoreSound1" src="geluiden/scoresound1.mp3"></audio>
+     <audio id="scoreSound2" src="geluiden/scoresound2.mp3"></audio>
+     <audio id="scoreSound3" src="geluiden/scoresound3.mp3"></audio>
+     <audio id="scoreSound4" src="geluiden/scoresound4.mp3"></audio>
+     <audio id="scoreSound5" src="geluiden/scoresound5.mp3"></audio>
+
+     <input type="checkbox" id="muziekCheckbox" onchange="toggleMusic()">
+     <p id="backgroundmuziekcheckbox">Klik hier om het achtergrondmuziek uittezetten</p>
+     <input type="checkbox" id="stopSoundCheckbox" onchange="toggleScoreSound()">
+   <p id="scoregeluidencheckboxsouund">Klik hier om alle sound-effects uittezetten</p>
+  <script>
+  let gridSize = 0;
+  let timerInterval;
+  let timerValue = 0;
+  let gameStarted = false;
+  let score = 0;
+  let highscore = localStorage.getItem('highscore') ? parseInt(localStorage.getItem('highscore')) : 0;
+  let coinwallet = localStorage.getItem('coinwallet') ? parseInt(localStorage.getItem('coinwallet')) : 0;
+  var tekstprompt = "Voer het nummer in van de waifu die u wilt kopen.\n 1.Yuki-chan\n 2.Hana-chan\n 3.Sakura-chan \n 4.Emo-chan \n 5.Henk-kun ";
+  let Yukigekocht = false;
+  let Hanagekocht = false;
+  let Sakuragekocht = false;
+  let Emogekocht = false;
+  let henkgekocht = false;
+  let highscore_beginpagina = highscore
+  let audio = document.getElementById("myAudio");
+  let spelmaggestardworden = false
+  let backgroundmuziek = false
+  let images = [];
+  let currentIndex = 0; 
+  let showingImage = false; 
+  let intervalId; 
+  let mobackgroundfoto = false; 
+  let isPlaying = false; 
+  let stopSound = false; 
+
+    function preload() {
+
+      for (let i = 1; i <= 15; i++) {
+        images.push(loadImage(`img/mol${i}.png`));
+      }
+    }
+
+    function setup() {
+      createCanvas(400, 400);
+    }
+
+    function draw() {
+      clear(); 
+      if (!mobackgroundfoto) {
+        fill(128, 128, 128);
+        rect(100, 100, 200, 200);
+      } else {
+        let aspectRatio = images[currentIndex].width / images[currentIndex].height;
+        let scaledWidth = 200;
+        let scaledHeight = 200 / aspectRatio;
+        image(images[currentIndex], 100, 100, scaledWidth, scaledHeight);
+      }
+    }
+
+    function changeImage() {
+      currentIndex = floor(random(images.length)); 
+    }
+
+    function activateImages() {
+      if (!showingImage && mobackgroundfoto) {
+        showingImage = true;
+        intervalId = setInterval(changeImage, 3500);
+      }
+    }
+
+    function checkAndPlaySound() {
+      if (backgroundmuziek === true) {
+        playSound();
+      }
+    }
+
+    function playSound() {
+      let audio = document.getElementById("myAudio");
+      audio.play();
+    }
+
+    audio.addEventListener('ended', function() {
+      audio.currentTime = 0; 
+      audio.play(); 
+    });
+
+    function toggleMusic() {
+      let checkbox = document.getElementById("muziekCheckbox");
+
+      if (checkbox.checked) {
+        audio.pause(); 
+        backgroundmuziek = false; 
+      } else {
+        audio.play(); 
+        backgroundmuziek = true; 
+      }
+    }
+
+    function showalles() {
+      laathighscorezien();
+      laatwalletzien();
+      spelmaggestardworden = true;
+      var button = document.getElementById('Spelstartenknop'); 
+      button.style.display = 'none'; 
+      updateDifficultyButtonStyles(); 
+      mobackgroundfoto = true; 
+      activateImages(); 
+      backgroundmuziek = true; 
+      checkAndPlaySound()
+      alert("Klik op alle waifu foto's om je score omhoog te laten gaan,\nen koop met je behaalde waifu-coins nieuwe waifu's.")
+    }
+
+function updateDifficultyButtonStyles() {
+  var makkelijkBtn = document.getElementById('makkelijkBtn');
+  var normaalBtn = document.getElementById('normaalBtn');
+  var moeilijkBtn = document.getElementById('moeilijkBtn');
+  var winkelBtn = document.getElementById("winkelBtn")
+
+  if (spelmaggestardworden) {
+    makkelijkBtn.classList.add('started');
+    normaalBtn.classList.add('started');
+    moeilijkBtn.classList.add('started');
+    winkelBtn.classList.add("started")
+  } else {
+    makkelijkBtn.classList.remove('started');
+    normaalBtn.classList.remove('started');
+    moeilijkBtn.classList.remove('started');
+    winkelBtn.classList.remove("started")
+  }
+}
+
+updateDifficultyButtonStyles();
+
+  function chooseDifficulty(size) {
+    if ((spelmaggestardworden === true)) {
+      gridSize = size;
+    document.getElementById('difficulty-buttons').style.display = 'none';
+    document.getElementById('game-container').style.display = 'block';
+    initializeGame();
+    checkGridSize(gridSize); 
+    document.getElementById('score-container').style.display = 'block';
+  }
+    }
+
+  function openPopup() {
+    if (spelmaggestardworden === true) {
+      var overlay = document.getElementById("overlay");
+      overlay.style.display = "flex"; 
+    }
+    }
+
+    function closePopup() {
+      var overlay = document.getElementById("overlay");
+      overlay.style.display = "none"; 
+    }
+
+function backToMenu() {
+  document.getElementById('game-container').style.display = 'none';
+  document.getElementById('difficulty-buttons').style.display = 'block';
+  document.getElementById('score-container').style.display = 'none';
+  score = 0;
+  document.getElementById('score').innerText = '0';
+  clearInterval(timerInterval);
+
+  document.querySelectorAll('.waifu-coin-container, .waifu-coin-container-2').forEach(container => container.style.display = 'none');
+}
+
+function checkGridSize(gridSize) {
+    const scoreContainer = document.getElementById('score-container');
+    const waifuCoinsContainer = document.getElementById('waifu-coins-container');
+    const waifuCoinContainer = document.getElementById('waifu-coin-container');
+    const waifuCoinContainer2 = document.getElementById('waifu-coin-container-2');
+
+    switch (gridSize) {
+      case 6:
+        scoreContainer.style.left = '1020px'; 
+        waifuCoinsContainer.style.left = '100px'; 
+        break;
+      case 8:
+        scoreContainer.style.left = '1200px'; 
+        waifuCoinsContainer.style.left = '150px'; 
+        break;
+      case 10:
+        scoreContainer.style.left = '1370px'; 
+        waifuCoinsContainer.style.left = '170px'; 
+        break;
+      default:
+        break;
+    }
+  }
+
+  function laatwalletzien() {
+  coinwalletgaatup(); 
+  var button = document.getElementById('walletlatenzienknop'); 
+  button.style.display = 'none'; 
+}
+
+function laathighscorezien() {
+  highscore++; 
+  highscore--; 
+
+  highscore_beginpagina++; 
+  highscore_beginpagina--; 
+
+  document.getElementById('highscore').innerText = highscore;
+  document.getElementById('highscore_beginpagina').innerText = highscore_beginpagina;
+
+  var button = document.getElementById('highscorelatenzienknop'); 
+  button.style.display = 'none'; 
+}
+
+    function initializeGame() {
+      const container = document.getElementById('container');
+      container.style.display = 'grid';
+      container.innerHTML = '';
+
+      container.style.gridTemplateColumns = 'repeat(' + gridSize + ', 70px)';
+      container.style.gridTemplateRows = 'repeat(' + gridSize + ', 70px)';
+
+      for (let i = 0; i < gridSize * gridSize; i++) {
+        const circle = document.createElement('div');
+        circle.classList.add('circle');
+        circle.onclick = function() {
+          if (gameStarted && this.style.backgroundImage !== '' && this.style.backgroundColor !== 'black') {
+            this.style.backgroundImage = '';
+            this.style.backgroundColor = 'black';
+            increaseScore();
+            resetTimer();
+            changeRandomCircleImage();
+            coinwalletgaatup();
+          }
+        };
+        container.appendChild(circle);
+
+      }
+    }
+
+    function startGame() {
+      gameStarted = true;
+      document.getElementById('start-game-btn').style.display = 'none';
+      startTimer();
+      changeRandomCircleImage();
+    }
+
+    function waifukoopen() {
+  var genoeggeld = parseInt(prompt(tekstprompt));
+
+ 
+  if (genoeggeld < 1 || genoeggeld > 5 || isNaN(genoeggeld)) {
+  alert("ERROR: niet geldig teken.");
+  } else 
+  
+  if (genoeggeld == 1 && Yukigekocht === true) {
+        alert("U heeft deze waifu al.")
+      }
+   if (genoeggeld == 1 && Yukigekocht===false) {
+    if (coinwallet > 20) {
+      coinwallet -= 20;
+      alert("Gefelicteerd je hebt Yuki-chan gekocht.")
+      document.getElementById("coinwallet").innerText = coinwallet;
+      coinwalletgaatup()
+      Yukigekocht = true
+      voegWaifuToeAlsGekocht()
+    } else {
+      alert("Sorry je hebt te weinig geld om iets te kopen in de shop. \nsmash meer waifu's voor meer coins");
+    } 
+  }
+
+  if (genoeggeld == 2 &&Hanagekocht === true) {
+        alert("U heeft deze waifu al.")
+      }
+   if (genoeggeld == 2 && Hanagekocht===false) {
+    if (coinwallet > 40) {
+      coinwallet -= 40;
+      alert("Gefelicteerd je hebt Hana-chan gekocht.")
+      document.getElementById("coinwallet").innerText = coinwallet;
+      coinwalletgaatup()
+      Hanagekocht = true
+      voegWaifuToeAlsGekocht()
+    } else {
+      alert("Sorry je hebt te weinig geld om deze waifu te kopen. \nsmash meer waifu's voor meer coins");
+    }
+  }
+
+   if (genoeggeld == 3 &&Sakuragekocht === true) {
+        alert("U heeft deze waifu al.")
+      }
+   if (genoeggeld == 3 && Sakuragekocht===false) {
+    if (coinwallet > 60) {
+      coinwallet -= 60;
+      alert("Gefelicteerd je hebt Sakura-chan gekocht.")
+      document.getElementById("coinwallet").innerText = coinwallet;
+      coinwalletgaatup()
+      Sakuragekocht = true
+      voegWaifuToeAlsGekocht()
+    } else {
+      alert("Sorry je hebt te weinig geld om deze waifu te kopen. \nsmash meer waifu's voor meer coins");
+    }
+  }
+
+  if (genoeggeld == 4 &&Emogekocht === true) {
+        alert("U heeft deze waifu al.")
+      }
+   if (genoeggeld == 4 && Emogekocht===false) {
+    if (coinwallet > 80) {
+      coinwallet -= 80;
+      alert("Gefelicteerd je hebt Emo-chan gekocht.")
+      document.getElementById("coinwallet").innerText = coinwallet;
+      coinwalletgaatup()
+      Emogekocht = true
+      voegWaifuToeAlsGekocht()
+    } else {
+      alert("Sorry je hebt te weinig geld om deze waifu te kopen. \nsmash meer waifu's voor meer coins");
+    }
+  }
+
+   if (henkgekocht === true) {
+        alert("U heeft deze waifu al.")
+        console.log("henkgekocht = true")
+      }
+   if (genoeggeld == 5 && henkgekocht===false) {
+    if (coinwallet > 200) {
+      coinwallet -= 200;
+      alert("Gefelicteerd je hebt Henk-kun gekocht.")
+      document.getElementById("coinwallet").innerText = coinwallet;
+      coinwalletgaatup()
+      henkgekocht = true
+      voegWaifuToeAlsGekocht();
+    } else {
+      alert("Sorry je hebt te weinig geld om deze waifu te kopen. \nsmash meer waifu's voor meer coins");
+    }
+  }
+}
+
+    function startTimer() {
+      clearInterval(timerInterval);
+      timerValue = getTimerValue(gridSize);
+      updateTimer(timerValue);
+      timerInterval = setInterval(function() {
+        timerValue -= 0.1;
+        if (timerValue <= 0) {
+          clearInterval(timerInterval);
+          endGame();
+        } else {
+          updateTimer(timerValue.toFixed(1));
+        }
+      }, 100);
+    }
+
+    let geluiden = [
+      { src: "geluiden/scoresound1.mp3", volume: 1.0 },
+      { src: "geluiden/scoresound2.mp3", volume: 1.0 },
+      { src: "geluiden/scoresound3.mp3", volume: 1.0 },
+      { src: "geluiden/scoresound4.mp3", volume: 1.0 },
+      { src: "geluiden/scoresound5.mp3", volume: 1.0 }
+    ];
+
+    function increaseScore() {
+      score++;
+      coinwallet++;
+      document.getElementById('score').innerText = score;
+      updateHighscore();
+      resetTimer();
+      coinwalletgaatup();
+
+      if (!isPlaying && !stopSound) {
+        playRandomSound();
+      }
+    }
+
+    function playRandomSound() {
+      let randomIndex = Math.floor(Math.random() * geluiden.length); 
+      let geluidscore = new Audio(geluiden[randomIndex].src);
+
+      geluidscore.onended = function() {
+        isPlaying = false;
+      };
+
+      geluidscore.volume = geluiden[randomIndex].volume; 
+      geluidscore.play();
+
+      isPlaying = true; 
+    }
+
+    function toggleScoreSound() {
+      stopSound = document.getElementById("stopSoundCheckbox").checked;
+    }
+
+function coinwalletgaatup() {
+  document.getElementById('coinwallet').innerText = coinwallet; 
+  localStorage.setItem('coinwallet', coinwallet.toString()); 
+}
+
+function laathighscorezien() {
+  highscore++; 
+  highscore--; 
+
+  document.getElementById('highscorebeginpagina').innerText = highscore
+  document.getElementById('highscore').innerText = highscore;
+
+  var button = document.getElementById('highscorelatenzienknop'); 
+  button.style.display = 'none'; 
+}
+
+    function endGame() {
+      gameStarted = false;
+      document.querySelectorAll('.circle').forEach(function(circle) {
+        circle.onclick = null;
+      });
+      document.getElementById('back-btn').style.display = 'block';
+      displayLostMessage();
+      document.getElementById('start-game-btn').style.display = 'inline-block';
+      document.getElementById('start-game-btn').innerText = 'Opnieuw Spelen';
+      document.getElementById('start-game-btn').onclick = function() {
+        restartGame();
+      };
+      document.getElementById('score').innerText = score;
+    }
+
+    function restartGame() {
+  document.getElementById('start-game-btn').style.display = 'none';
+  document.getElementById('back-btn').style.display = 'none';
+  score = 0;
+  document.getElementById('score').innerText = '0';
+  initializeGame();
+  startGame();
+  document.querySelectorAll('.waifu-coin-container').forEach(container => container.dataset.show = 'true'); 
+  document.getElementById('waifu-coins-container').style.display = 'block'; 
+}
+
+    function displayLostMessage() {
+      const container = document.getElementById('container');
+      const lostMessage = document.createElement('div');
+      lostMessage.style.color = 'red';
+      lostMessage.style.fontSize = '20px';
+      alert('Gefelicteerd je hebt een score van ' + score + "\nspeel het spel nog een keer om je score te verbeteren.");
+      container.appendChild(lostMessage);
+    }
+
+    function foto_waifu_coins() {
+
+      if (gridSize === 0 || !gameStarted) {
+
+        document.getElementById('waifu-coins-container').style.display = 'none';
+        return;
+      }
+
+      document.getElementById('waifu-coins-container').style.display = 'block';
+    }
+
+    function getTimerValue(size) {
+      if (size === 6) return 1.5;
+      if (size === 8) return 1.5;
+      if (size === 10) return 1.5;
+      return 0;
+    }
+
+    function updateTimer(value) {
+      document.getElementById('timer').innerText = 'Tijd: ' + value + ' seconden';
+    }
+
+    function changeRandomCircleImage() {
+      if (gridSize === 0 || !gameStarted) {
+        alert('Kies eerst een moeilijkheidsgraad en start het spel.');
+        return;
+      }
+
+      const circles = document.querySelectorAll('.circle');
+      const moleCircles = document.querySelectorAll('.circle[style^="background-image"]');
+
+      moleCircles.forEach(function(circle) {
+        circle.style.backgroundImage = '';
+      });
+
+      let randomIndex;
+      do {
+        randomIndex = Math.floor(Math.random() * gridSize * gridSize);
+      } while (circles[randomIndex].style.backgroundImage !== '');
+
+      circles[randomIndex].style.backgroundImage = 'url(' + getRandomMoleImage() + ')';
+      circles[randomIndex].style.backgroundColor = '';
+      resetTimer();
+    }
+
+    function resetTimer() {
+      clearInterval(timerInterval);
+      startTimer();
+    }
+
+    function updateHighscore() {
+      if (score > highscore) {
+        highscore = score;
+        localStorage.setItem('highscore', highscore.toString());
+        document.getElementById('highscore').innerText = highscore;
+      }
+    }
+
+    const moleImages = [
+  'img/mol1.png',
+  'img/mol2.png',
+  'img/mol3.png',
+  'img/mol4.png',
+  'img/mol5.png',
+  'img/mol6.png',
+  'img/mol7.png',
+  'img/mol8.png',
+  'img/mol9.png',
+  'img/mol10.png'
+];
+
+function getRandomMoleImage() {
+  return moleImages[Math.floor(Math.random() * moleImages.length)];
+}
+
+function voegWaifuToeAlsGekocht() {
+  if (Yukigekocht === true) {
+    moleImages.push('img/mol11.png');
+    console.log("Yuki is toevoegd aan de array")
+  }
+  if (Hanagekocht === true) {
+    moleImages.push('img/mol12.png');
+    console.log("Hana is toevoegd aan de array")
+  }
+  if (Sakuragekocht === true) {
+    moleImages.push('img/mol13.png')
+    console.log("Sakura is toevoegd aan de array")
+  }
+  if (Emogekocht === true) {
+    moleImages.push('img/mol14.png')
+    console.log("Emo is toevoegd aan de array")
+  }
+  if (henkgekocht === true) {
+    moleImages.push('img/mol15.png')
+    console.log("Henk is toevoegd aan de array")
+  }
+}
+
+    window.onload = function() {
+  checkGridSize(gridSize);
+  foto_waifu_coins();
+  foto_waifu_coins_nummer2();
+  laatwalletzien()
+
+  coinwallet = localStorage.getItem('coinwallet') ? parseInt(localStorage.getItem('coinwallet')) : 0;
+
+};
+
+  </script>
+</body>
+</html>
