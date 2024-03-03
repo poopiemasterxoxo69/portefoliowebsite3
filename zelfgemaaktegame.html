@@ -4,306 +4,314 @@
   <meta charset="UTF-8">
   <title>Mole Grid</title>
   <style>
-    body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-image: url('img/backgroundgame.jpg');
-  background-size: 100% 100%; 
-  background-repeat: no-repeat;
-  height: 100vh;
-  margin: 0;
-  position: relative;
-  padding: 0; 
-}
+     body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-image: url('img/backgroundgame.jpg');
+      background-size: 100% 100%; /* Afbeelding wordt geschaald om het hele scherm te bedekken */
+      background-repeat: no-repeat;
+      height: 100vh;
+      margin: 0;
+      position: relative;
+      
+    }
 
-.container {
-  display: grid;
-  margin-top: 2vh;
-  position: relative;
-}
+    .container {
+      display: grid;
+      margin-top: 20px;
+      position: relative;
+      
+    }
 
-.circle {
-  width: 4vw;
-  height: 4vw;
-  border-radius: 50%;
-  background-color: black;
-  background-size: cover;
-  margin: 1vw;
-  cursor: pointer;
-}
+    .circle {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background-color: black;
+      background-size: cover;
+      margin: 5px;
+      cursor: pointer;
+    }
 
-button {
-  margin-bottom: 1vh;
-}
-
+    button {
+      margin-bottom: 10px;
+    }
 #coinwallet-text {
+      position: absolute;
+      top: 20px; 
+      left: 20px;
+      font-weight: bold;
+      font-size: 24px;
+      color: white;
+      -webkit-text-stroke: 0.2px black;
+    }
+
+    #coinwallet-container {
+      position: absolute;
+      top: 140px;
+      left: 323px; 
+      font-weight: bold;
+      font-size: 30px;
+
+      color: white;
+      -webkit-text-stroke: 0.2px black;
+    }
+
+    #waifu-coins-text, #coinwallet {
+      font-weight: bold;
+
+    }
+
+    #waifu-wallet-foto {
+      position: absolute;
+      top: -65px;
+      left: 44px;
+    }
+
+    #walletlatenzienknop {
+      background-color: aqua;
+      display: none; 
+    }
+
+    #highscorelatenzienknop {
+      background-color: red;
+      display: none;
+    }
+
+    #score-container {
+      position: absolute;
+      top: 70px;
+      right: 160px;
+      font-weight: bold;
+      font-size: 24px;
+      display: none; 
+
+      color: white;
+      -webkit-text-stroke: 0.2px black;
+    }
+
+    #scoretekst {
+      position: absolute;
+      top: 50px;
+      right: 160px;
+      font-weight: bold;
+      font-size: 24px;
+      font-size: 24px;
+      color: white;
+      -webkit-text-stroke: 0.2px black;
+    }
+
+    .waifu-coin-container {
+      position: absolute;
+      top: -20px; 
+      left: 2883px; 
+    }
+
+    .waifu-coin-container-2 {
+      position: absolute;
+      top: 90px; 
+      left: 1433.86px; 
+    }
+
+    #score {
+
+      position: absolute; 
+      bottom: -90px; 
+      right: -65px; 
+      font-size: 30px;
+      color: white;
+      -webkit-text-stroke: 0.2px black;
+      font-weight: bold; 
+    }
+
+    #waifu-coin-1 {
+      position: absolute;
+      top: -20px;
+      left: 2880px;
+    }
+
+    #waifu-coin-2 {
+      position: absolute;
+      top: 175px; 
+      left: 2867px; 
+    }
+
+    #waifu-coin-2-beginpagina {
+      position: absolute;
+      top: -10px;
+      left: 2860px; 
+    }
+
+    #highscore {
+
+      position: absolute;
+      top: 342px;
+      right: 45px;
+      font-weight: bold;
+      font-size: 30px;
+      color: white;
+      -webkit-text-stroke: 0.2px black;
+    }
+
+    #highscore-coins-text {
+      position: absolute;
+      top: 250px;
+      right: 160px;
+      font-weight: bold;
+      font-size: 24px;
+      color: white;
+      -webkit-text-stroke: 0.2px black;
+    }
+
+   #highscore-coins-text-beginpagina {
+    position: absolute;
+      top: 50px;
+      right: 160px;
+      font-weight: bold;
+      font-size: 24px;
+      font-size: 24px;
+      color: white;
+      -webkit-text-stroke: 0.2px black;
+   } 
+
+    #highscore-coin {
+      width: 120px; 
+      height: auto; 
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    #highscorebeginpagina {
+      position: absolute;
+      top: 150px;
+      right: 65px;
+      font-weight: bold;
+      font-size: 35px;
+      color: white;
+      -webkit-text-stroke: 0.2px black;
+    }
+
+    #winkelBtn {
+      position: absolute;
+      top: 400px;
+      left: 150px;
+      font-weight: bold;
+      height: 50px;
+      width: 200px;
+      font-size: 20px;
+    }
+
+    #Spelstartenknop {
+      position: absolute;
+      display: hidden;
+      background-color: #ffff00;
+      height: 200px;
+      font-weight: bold;
+      width: 360px;
+      font-size: 50px;
+      left: 1360px;
+      top: 330px;
+
+    }
+
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      font-weight: bold;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5); 
+      justify-content: center;
+      align-items: center;
+    }
+
+    .popup {
+      background-color: white;
+      padding: 20px;
+      border-radius: 5px;
+      text-align: center;
+      display: flex; 
+      flex-wrap: wrap; 
+      justify-content: center; 
+    }
+
+    .close-button {
+      margin-top: 10px;
+      padding: 5px 10px;
+      background-color: #ccc;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .koopbutton {
   position: absolute;
-  top: 2%;
-  left: 0.3%;
-  font-weight: bold;
-  font-size: 1.5vw;
-  color: white;
-  -webkit-text-stroke: 0.2px black;
-}
-
-#coinwallet-container {
-  position: absolute;
-  top: 4.5vh;
-  left: 15.2vw;
-  font-weight: bold;
-  font-size: 1.5vw;
-  color: white;
-  -webkit-text-stroke: 0.2px black;
-}
-
-#waifu-coins-text, #coinwallet {
-  font-weight: bold;
-}
-
-#waifu-wallet-foto {
-  position: absolute;
-  top: -1.75vh;
-  left: 6.2vw;
-}
-
-#walletlatenzienknop {
-  background-color: aqua;
-  display: none;
-}
-
-#highscorelatenzienknop {
-  background-color: red;
-  display: none;
-}
-
-#score-container {
-  position: absolute;
-  top: 7%;
-  right: 16%;
-  font-weight: bold;
-  font-size: 3vw;
-  display: none;
-  color: white;
-  -webkit-text-stroke: 0.2px black;
-}
-
-#scoretekst {
-  position: absolute;
-  top: 4vh;
-  right: 4vw;
-  font-weight: bold;
-  font-size: 1.5vw;
-  color: white;
-  -webkit-text-stroke: 0.2px black;
-}
-
-.waifu-coin-container {
-  position: absolute;
-  top: -2%;
-  left: 30.83%;
-}
-
-.waifu-coin-container-2 {
-  position: absolute;
-  top: 9%;
-  left: 14.33%;
-}
-
-#score {
-  position: absolute;
-  bottom: -9%;
-  right: -6.5%;
-  font-size: 3vw;
-  color: white;
-  -webkit-text-stroke: 0.2px black;
-  font-weight: bold;
-}
-
-#waifu-coin-1 {
-  position: absolute;
-  top: -2%;
-  left: 28.8%;
-}
-
-#waifu-coin-2 {
-  position: absolute;
-  top: 17.5%;
-  left: 28.67%;
-}
-
-#waifu-coin-2-beginpagina {
-  position: absolute;
-  top: 0.4vh;
-  left: 91vw;
-}
-
-#highscore {
-  position: absolute;
-  top: 34.2%;
-  right: 4.5%;
-  font-weight: bold;
-  font-size: 3vw;
-  color: white;
-  -webkit-text-stroke: 0.2px black;
-}
-
-#highscore-coins-text {
-  position: absolute;
-  top: 25%;
-  right: 16%;
-  font-weight: bold;
-  font-size: 2.4vw;
-  color: white;
-  -webkit-text-stroke: 0.2px black;
-}
-
-#highscore-coins-text-beginpagina {
-  position: absolute;
-  top: 6vh;
-  right: 4vw;
-  font-weight: bold;
-  font-size: 1.5vw;
-  color: white;
-  -webkit-text-stroke: 0.2px black;
-}
-
-#highscore-coin {
-  width: 12vw;
-  height: auto;
-  display: block;
-  margin-bottom: 1vh;
-}
-
-#highscorebeginpagina {
-  position: absolute;
-  top: 13.5%;
-  right: 1.9%;
-  font-weight: bold;
-  font-size: 1.5vw;
-  color: white;
-  -webkit-text-stroke: 0.2px black;
-}
-
-#winkelBtn {
-  position: absolute;
-  top: 40%;
-  left: 15%;
-  font-weight: bold;
-  height: 5vh;
-  width: 20vw;
-  font-size: 2vw;
-}
-
-#Spelstartenknop {
-  position: absolute;
-  display: hidden;
-  background-color: #ffff00;
-  height: 20vh;
-  font-weight: bold;
-  width: 36vw;
-  font-size: 5vw;
-  left: 34vw;
-  top: 33vh;
-}
-
-.overlay {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5);
-  justify-content: center;
-  align-items: center;
-}
-
-.popup {
-  background-color: white;
-  padding: 2vh;
-  border-radius: 5px;
-  text-align: center;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.close-button {
-  margin-top: 1vh;
-  padding: 0.5vh 1vw;
-  background-color: #ccc;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.koopbutton {
-  position: absolute;
-  bottom: 35%;
-  right: 10.03%;
+  bottom: 350px; 
+  right: 1003px; 
   background-color: lightgreen;
-  padding: 1vh 2vw;
+  padding: 10px 20px;
   border: none;
   border-radius: 3px;
   cursor: pointer;
-  width: 35vw;
-  height: 5vh;
+  width: 350px;
+  height: 50px;
   font-weight: bold;
 }
 
-.product {
-  margin: 1vh;
-}
+    .product {
+      margin: 10px; 
+    }
 
-.product img {
-  max-width: 10vw;
-  max-height: 10vh;
-}
+    .product img {
+      max-width: 200px;
+      max-height: 200px;
+    }
 
-.geldteken img {
-  width: 0.3vw;
-  height: 0.3vw;
-}
+    .geldteken img {
+      width: 3px;
+      height: 3px;
+    }
 
-.product .price {
-  margin-top: 1vh;
-  font-weight: bold;
-}
+    .product .price {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    #scoregeluidencheckboxsouund {
+      position: absolute;
+      font-size: 24px;
+      color: white;
+      -webkit-text-stroke: 0.2px black;
+      top: 470px;
+      font-weight: bold;
+      left: 2302px
+    }
 
-#scoregeluidencheckboxsouund {
-  position: absolute;
-  font-size: 2.4vw;
-  color: white;
-  -webkit-text-stroke: 0.2px black;
-  top: 47%;
-  font-weight: bold;
-  left: 23.02%;
-}
+    #backgroundmuziekcheckbox {
+      position: absolute;
+      font-size: 24px;
+      color: white;
+      -webkit-text-stroke: 0.2px black;
+      top: 420px;
+      font-weight: bold;
+      left: 2240px
+    }
 
-#backgroundmuziekcheckbox {
-  position: absolute;
-  font-size: 2.4vw;
-  color: white;
-  -webkit-text-stroke: 0.2px black;
-  top: 42%;
-  font-weight: bold;
-  left: 22.4%;
-}
+    #stopSoundCheckbox {
+      position: absolute;
+      top: 500px;
+      left: 2730px
+    }
 
-#stopSoundCheckbox {
-  position: absolute;
-  top: 50%;
-  left: 27.3%;
-}
-
-#muziekCheckbox {
-  position: absolute;
-  top: 45%;
-  left: 27.3%;
-}
+    #muziekCheckbox {
+      position: absolute;
+      top: 450px;
+      left: 2730px
+    }
 
 .makkelijk,
 .normaal,
@@ -326,8 +334,8 @@ button {
 }
 
 .winkel.started {
-  background-color: RGB(135, 206, 250);
-  left: 2%;
+  background-color:  RGB(135, 206, 250);
+  left: 20px;
 }
 
 .makkelijk,
@@ -336,26 +344,26 @@ button {
 .makkelijk.started,
 .moeilijk.started,
 .normaal.started {
-  height: 20vh;
-  width: 40vw;
-  font-size: 7vw;
+  height: 200px;
+  width: 400px;
+  font-size: 70px;
   font-weight: bold;
-  margin-right: 5%;
+  margin-right: 50px; 
 }
 
 #timer {
-  font-size: 3vw;
-  color: white;
-  font-weight: bold;
-  -webkit-text-stroke: 0.2px black;
+  font-size: 30px;
+      color: white;
+      font-weight: bold;
+      -webkit-text-stroke: 0.2px black;
 }
-
 canvas {
-  position: absolute;
-  top: 67%;
-  left: 35%;
-  background-color: rgba(0, 0, 0, 0);
-}
+      position: absolute;
+
+      top: 670px;
+      left: 350px;
+      background-color: rgba(0, 0, 0, 0); 
+    }
 
 
   </style>
@@ -827,8 +835,18 @@ function laathighscorezien() {
     ];
 
     function increaseScore() {
-      score++;
-      coinwallet++;
+      if (gridSize === 6) {
+        coinwallet += 1
+        score++;
+      }
+      if (gridSize === 8) {
+        coinwallet += 3
+        score++;
+      }
+      if (gridSize === 10) {
+        coinwallet += 5
+        score++;
+      }
       document.getElementById('score').innerText = score;
       updateHighscore();
       resetTimer();
